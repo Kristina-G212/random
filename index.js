@@ -1,13 +1,15 @@
-/*
 const arrayOfValues = [];
+const arrayOfValues2 = [];
 const inputNode = document.getElementById(`somevalue`);
 const outputNode = document.getElementById(`outputRandom`);
-const newDiv = document.createElement(`div`);
-const button = document.getElementById(`js-add`);*/
 
+const button = document.getElementById(`js-add`);
+const deletButton = document.getElementsByClassName(`del`);
+
+const degOfRotate = 360 / arrayOfValues2.length;
 
 let wheel = document.getElementById(`wheel`);
-let buttonSpin = document.getElementById(`spin`)
+let buttonSpin = document.getElementById(`spin`);
 let number = Math.ceil(Math.random() * 1000);
 
 buttonSpin.onclick = function() {
@@ -16,68 +18,47 @@ buttonSpin.onclick = function() {
 }
 
 
-function addY() {
-    document.getElementById(`Yes`).innerHTML = document.getElementById(`afterYes`).value;
-}
-
-function addN() {
-    document.getElementById(`No`).innerHTML = document.getElementById(`afterNo`).value;
-}
-
-
-function addOne() {
-    document.getElementById(`One`).innerHTML = document.getElementById(`afterOne`).value;
-}
-
-
-function addTwo() {
-    document.getElementById(`Two`).innerHTML = document.getElementById(`afterTwo`).value;
-}
-
-
-function addTh() {
-    document.getElementById(`Three`).innerHTML = document.getElementById(`afterThree`).value;
-}
-
-
-function addFour() {
-    document.getElementById(`Four`).innerHTML = document.getElementById(`afterFour`).value;
-}
-
-
-function addF() {
-    document.getElementById(`Five`).innerHTML = document.getElementById(`afterFive`).value;
-}
-
-
-/*
 button.addEventListener(`click`, function() {
     addNewValue();
-    addNewElement();
 })
+
+let i = 0;
 
 function addNewValue() {
     const value = inputNode.value;
+    const newInput = document.createElement(`input`);
+    const newDeletB = document.createElement(`button`);
+    const newDiv = document.createElement(`div`);
+    newDeletB.textContent = `Delete`;
+    newDeletB.classList.add(`del`)
+    const boxOfInputes = document.getElementById(`inputes`);
+    
+
     if (value == ``) {
         return console.log(`No value`)
     } else {
         arrayOfValues.push(value);
         inputNode.value = ``; 
         console.log(arrayOfValues);
-        newDiv.classList.add(`newdiv`);
-        newDiv.innerHTML = `${inputNode}`;
-        document.querySelector(`.form`).appendChild(newDiv);
-    }
-}
+        newInput.type = `text`;
+        newInput.value = arrayOfValues[0];
+        arrayOfValues2.push(...arrayOfValues);
+        boxOfInputes.appendChild(newDiv);
+        newDiv.setAttribute(`id`, i)
+        newDiv.appendChild(newInput);
+        newDiv.appendChild(newDeletB);
+        arrayOfValues.shift();
+        console.log(arrayOfValues2);
+        i += 1;
+    }    
+} 
 
-function addNewElement() {
-    let wheel = document.getElementById(`wheel`);
-    let newElementOfWheel = document.createElement(`li`);
-    newElementOfWheel.innerHTML = arrayOfValues[inputNode.value];
-    wheel.appendChild(newElementOfWheel);
-}
+deletButton.addEventListener(`click`, function() {
+    deletButton.parentElement.classList.add(`none`);
+})
+
 
 function showRandomValue() {
-    const random = Math.floor(Math.random() * arrayOfValues.length);
-    outputRandom.innerHTML = arrayOfValues[random];
-}*/
+    const random = Math.floor(Math.random() * arrayOfValues2.length);
+    outputRandom.innerHTML = arrayOfValues2[random]
+}
